@@ -1,0 +1,9 @@
+venv/
+.idea/
+__pycache__/
+
+geckodriver.log
+
+*.ini
+*.sqlite3
+*.pyc
