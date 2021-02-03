@@ -7,3 +7,5 @@ geckodriver.log
 *.ini
 *.sqlite3
 *.pyc
+
+.DS_Store
