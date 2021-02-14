@@ -16,8 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from core.views import home
-from subscriptions.views import subscribe
+from eventex.core.views import home
+from eventex.subscriptions.views import subscribe
 
 urlpatterns = [
     path("", home, name="home_page"),
