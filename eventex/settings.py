@@ -28,7 +28,9 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['*']
+# When DEBUG=False, we have to set ALLOWED_HOSTS
+# I prefer to work with DEBUG=True
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -44,6 +46,7 @@ DEFAULT_APPS = [
 
 LOCAL_APPS = [
     'core',
+    'subscriptions',
 ]
 
 THIRD_APPS = []
@@ -84,7 +87,7 @@ WSGI_APPLICATION = 'eventex.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DEFAULT_DBURL = 'sqlite:///' + (BASE_DIR / 'db.sqlite3')
+DEFAULT_DBURL = 'sqlite:///' + str((BASE_DIR / 'db.sqlite3'))
 
 DATABASES = {
     'default': config('DATABASE_URL', default=DEFAULT_DBURL, cast=dburl)
@@ -113,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 
@@ -127,5 +130,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+# Using a server to get static's
+# python -m http.server 8001
+# STATIC_URL = 'http://localhost:8001/'
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+
+# Email settings
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_BACKEND = config('EMAIL_BACKEND')
+    EMAIL_HOST = config('EMAIL_HOST')
+    EMAIL_PORT = config('EMAIL_PORT', cast=int)
+    EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+    EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
