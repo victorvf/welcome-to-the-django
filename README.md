@@ -16,7 +16,7 @@ git clone https://github.com/victorvf/welcome-to-the-django.git
 cd wttd
 python3 -m venv .env-wttd
 source .env-wttd/bin/activate
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 cp contrib/env-sample .env
 python manage.py test
 ```

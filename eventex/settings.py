@@ -44,12 +44,15 @@ DEFAULT_APPS = [
     'django.contrib.staticfiles',
 ]
 
+THIRD_APPS = [
+    'test_without_migrations',
+    'django_extensions',
+]
+
 LOCAL_APPS = [
     'eventex.core',
     'eventex.subscriptions',
 ]
-
-THIRD_APPS = []
 
 INSTALLED_APPS = (DEFAULT_APPS + THIRD_APPS + LOCAL_APPS)
 
