@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.conf import settings
 
 from .forms import SubscriptionForm
+from .models import Subscription
 
 
 def subscribe(request):
@@ -32,6 +33,8 @@ def create(request):
         settings.DEFAULT_FROM_EMAIL,
         form.cleaned_data["email"],
     )
+
+    Subscription.objects.create(**form.cleaned_data)
     
     messages.success(request, "Inscrição realizada com sucesso!")
 
