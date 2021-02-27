@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <section>
+        <div class="content row padding-bottom-3 desktop-12 container">
+            <h1>Muito obrigada por se increver!</h1>
+            <div class="desktop-6">
+                <p>Estes foram os dados que você nos forneceu em sua incrição:</p>
+
+                <ul>
+                    <li><span>Nome: {{ subscription.name }}</span></li>
+                    <li><span>CPF: {{ subscription.cpf }}</span></li>
+                    <li><span>Email: {{ subscription.email }}</span></li>
+                    <li><span>Telefone: {{ subscription.phone }}</span></li>
+                </ul>
+
+                <p>Em até 48 horas úteis, a nossa equipe entrará em contato com você para 
+                concluirmos a sua matrícula.</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

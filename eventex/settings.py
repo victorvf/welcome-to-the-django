@@ -51,7 +51,7 @@ THIRD_APPS = [
 
 LOCAL_APPS = [
     'eventex.core',
-    'eventex.subscriptions',
+    'eventex.subscriptions.apps.SubscriptionsConfig',
 ]
 
 INSTALLED_APPS = (DEFAULT_APPS + THIRD_APPS + LOCAL_APPS)
