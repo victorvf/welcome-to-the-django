@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect, Http404
-from django.shortcuts import render
+from django.shortcuts import render, resolve_url as r
 from django.core import mail
 from django.template.loader import render_to_string
 from django.conf import settings
@@ -8,11 +8,11 @@ from .forms import SubscriptionForm
 from .models import Subscription
 
 
-def subscribe(request):
+def new(request):
     if request.method == "POST":
         return create(request)
-    else:
-        return new(request)
+
+    return empty_form(request)
 
 
 def create(request):
@@ -35,10 +35,10 @@ def create(request):
         {"subscription": subscription},
     )
 
-    return HttpResponseRedirect(f"/inscricao/{subscription.pk}/")
+    return HttpResponseRedirect(r("subscriptions:detail", subscription.pk))
 
 
-def new(request):
+def empty_form(request):
     return render(
         request,
         "subscriptions/subscription_form.html",
