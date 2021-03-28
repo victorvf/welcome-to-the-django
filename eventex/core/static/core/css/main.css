@@ -366,3 +366,12 @@ section header h2 {
 }
 
 /* Fim Customização */
+
+.speakers h2 {
+    text-transform: uppercase;
+}
+
+.speakers img {
+    width: 200px;
+    border-radius: 100%;
+}
