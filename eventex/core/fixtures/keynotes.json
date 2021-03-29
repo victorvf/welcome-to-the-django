@@ -1,0 +1,13 @@
+[
+{
+    "model": "core.speaker",
+    "pk": 1,
+    "fields": {
+        "name": "Alan Turing",
+        "slug": "alan-turing",
+        "photo": "http://hbn.link/turing-pic",
+        "website": "http://hbn.link/turing-site",
+        "description": ""
+    }
+}
+]
