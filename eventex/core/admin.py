@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.template.defaultfilters import safe
 
-from eventex.core.models import Speaker, Contact, Talk
+from eventex.core.models import Speaker, Contact, Talk, Course
 
 
 class ContactInline(admin.TabularInline):
@@ -12,7 +12,7 @@ class ContactInline(admin.TabularInline):
 
 class SpeakerModelAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
-    list_display = ["name", "photo_img", "website_link"]
+    list_display = ["name", "photo_img", "website_link", "email", "phone"]
     inlines = [ContactInline]
 
     def website_link(self, obj):
@@ -25,6 +25,17 @@ class SpeakerModelAdmin(admin.ModelAdmin):
 
     photo_img.short_description = "foto"
 
+    def email(self, obj):
+        return obj.contact_set.emails().first()
+    
+    email.short_description = "e-mail"
+
+    def phone(self, obj):
+        return Contact.phones.filter(speaker=obj).first()
+    
+    phone.short_description = "telefone"
+
 
 admin.site.register(Speaker, SpeakerModelAdmin)
 admin.site.register(Talk)
+admin.site.register(Course)
